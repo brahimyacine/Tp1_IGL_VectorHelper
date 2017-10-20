@@ -39,7 +39,7 @@ public class VectorHelper {
     }
 
 
-    public void Invert ()
+    public void Invert () // to invert the victor 
     {
         int j=vector.size()-1 ;
         int i=0 ;
@@ -54,7 +54,7 @@ public class VectorHelper {
         }
     }
 
-    public void Multiplication ( int k)
+    public void Multiplication ( int k) //u chose the number
     {
         for (int i=0;i<vector.size();i++)
         {
