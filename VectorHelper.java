@@ -15,4 +15,28 @@ public class VectorHelper {
         this.vector = vector;
     }
 
+    public void sortVerctor()
+    {
+        boolean bool = true ;
+        int i = j = 0 ;
+        int temp = 0 ;
+        while ( bool )
+        {
+            bool = false ;
+            while (i < vector.size()-1 )
+            {
+                if ( vector.get(i) > vector.get(i+1) )
+                {
+                    temp=vector.get(i);
+                    vector.set(i , vector.get(i+1));
+                    vector.set(i+1 , temp);
+                    bool  =  true ;
+                }
+            }
+            j++;
+            i = j ;
+
+        }
+    }
+
 }
