@@ -102,6 +102,7 @@ public class VectorHelper {
     {
         String [] tab = text.split (" ");
         for (int i=0;i<tab.length;i++)
+
         {
             if ( !tab[i].equals(" ") && tab[i].length()>0){
                 vector.add(Float.parseFloat(tab[i]));
@@ -125,6 +126,10 @@ public class VectorHelper {
             vector.add(new Float(sc.next()));
             System.out.println();
         }
+
+
+    }
+
 
     }
     public void printVector()
