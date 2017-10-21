@@ -39,7 +39,7 @@ public class VectorHelper {
     }
 
 
-    public void Invert () // to invert the victor 
+    public void Invert () // to invert the victor
     {
         int j=vector.size()-1 ;
         int i=0 ;
@@ -62,6 +62,12 @@ public class VectorHelper {
         }
     }
 
+    public void parseText (String text)
+    {
+        String [] tab = text.split (" ");
+        for (int i=0;i<tab.length;i++)
+
+    }
 
 
     public static void main(String[] args) {
