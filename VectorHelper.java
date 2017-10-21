@@ -97,6 +97,18 @@ public class VectorHelper {
             vector.set(i,vector.get(i)*k);
         }
     }
+
+    public void parseText (String text)
+    {
+        String [] tab = text.split (" ");
+        for (int i=0;i<tab.length;i++)
+        {
+            if ( !tab[i].equals(" ") && tab[i].length()>0){
+                vector.add(Float.parseFloat(tab[i]));
+            }
+        }
+    }
+    
     public void fillVector()
     {
         Scanner sc=new Scanner(System.in);
