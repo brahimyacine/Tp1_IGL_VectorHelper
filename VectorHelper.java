@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class VectorHelper {
-    private List<Float> vector = new ArrayList<Float>();
+    private List <Float> vector = new ArrayList<>();
 
     public List<Float> getVector() {
         return vector;
@@ -17,8 +18,7 @@ public class VectorHelper {
     {
         boolean bool = true ;
 
-        int i = 0 ,
-            j = 0 ;
+        int i = 0 ;
         float temp = 0 ;
 
         while ( bool )
@@ -29,20 +29,21 @@ public class VectorHelper {
                 if ( vector.get(i) > vector.get(i+1) )
                 {
                     temp=vector.get(i);
-                    vector.set(i , vector.get(i+1));
-                    vector.set(i+1 , temp);
+                    vector.set(i , new Float(vector.get(i+1)));
+                    vector.set(i+1 , new Float(temp));
                     bool  =  true ;
                 }
+                i++;
             }
-            j++;
-            i = j ;
+
+            i=0;
 
         }
     }
-     public float getMax()
+    public float getMax()
     {
-        int max = vector.get(0) ,
-                taille = vector.size() ;
+        float max  = vector.get(0) ;
+        int taille = vector.size() ;
         for (int i = 1 ; i < taille ; i++ )
             if ( vector.get(i)   >  max )
                 max = vector.get(i) ;
@@ -51,30 +52,30 @@ public class VectorHelper {
     public float getMin()
     {
 
-        int     min =   vector.get(0),
-                taille  =   vector.size();
+        float     min     =   vector.get(0);
+        int       taille  =   vector.size();
         for (int i  =   1;  i   <   taille  ;   i++ )
-            if (    vector.get(i)   >  min)
+            if (    vector.get(i)   <  min)
                 min =   vector.get(i);
         return min;
 
     }
     public List<Float> addVectors(List<Float> vector1)throws SizeException
     {   int size = vector.size();
-        if(vector.size()!=vector1.size()) throw SizeException;
+        if(vector.size()!=vector1.size()) throw new SizeException();
         else
         {
-            List<Integer> resultVector = new ArrayList<>(vector.size());
+            List<Float> resultVector = new ArrayList<>(vector.size());
             for (int i = 0 ; i < size; i++ )
             {
-                resultVector.set(i,vector.get(i)+vector1.get(i));
+                resultVector.add(new Float(vector.get(i)+vector1.get(i)));
             }
             return resultVector;
         }
     }
 
 
-    public void Invert () // to invert the victor 
+    public void Invert () // to invert the victor
     {
         int j=vector.size()-1 ;
         int i=0 ;
@@ -83,7 +84,7 @@ public class VectorHelper {
         {
             temp = vector.get(i);
             vector.set(i,vector.get(j));
-            vector.set(j,temp);
+            vector.set(j,new Float(temp));
             j--;
 
         }
@@ -96,27 +97,59 @@ public class VectorHelper {
             vector.set(i,vector.get(i)*k);
         }
     }
+    public void fillVector()
+    {
+        Scanner sc=new Scanner(System.in);
+        vector.clear();
+        int taille=0;
 
+        System.out.print("Taille ?: ");
+        taille=sc.nextInt();
 
+        for (int i=0  ; i<taille;i++)
+        {
+            System.out.print("Vector["+i+"]:");
 
-    public static void main(String[] args) {
-        List<Float> vector = new ArrayList<Float>();
-        float i ;
-        i=4;
-        vector.add(i);
-        i=6;
-        vector.add(i);
-        i=10;
-        vector.add(i);
-        VectorHelper Vcc = new VectorHelper();
-        Vcc.setVector(vector);
-        //Vcc.Invert();
-        Vcc.Multiplication(2);
-        System.out.println(Vcc.getVector().toString());
+            vector.add(new Float(sc.next()));
+            System.out.println();
+        }
 
     }
+    public void printVector()
+    {
+        System.out.println(vector.toString());
+    }
 
- 
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        VectorHelper Vcc1 = new VectorHelper();
+        VectorHelper Vcc2 = new VectorHelper();
+        System.out.println("Lecture Vector 1");
+        Vcc1.fillVector();
+        Vcc1.printVector();
+        System.out.println("Max : "+Vcc1.getMax());
+        System.out.println("Min : "+Vcc1.getMin());
+        System.out.println("Vector1 sorted");
+        Vcc1.sortVerctor();
+        Vcc1.printVector();
+        System.out.println("Vector1 Inverted");
+        Vcc1.Invert();
+        Vcc1.printVector();
+
+        System.out.println("Lecture Vector 2");
+        Vcc2.fillVector();
+        Vcc2.printVector();
+        System.out.println("Max : "+Vcc2.getMax());
+        System.out.println("Min : "+Vcc2.getMin());
+        System.out.println("Vector2 sorted");
+        Vcc2.sortVerctor();
+        Vcc2.printVector();
+        System.out.println("Vector2 Inverted");
+        Vcc2.Invert();
+        Vcc2.printVector();
+    }
+
+
 
 }
 
