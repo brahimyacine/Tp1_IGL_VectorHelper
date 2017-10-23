@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Tp1_IGL_VectorHelper.iml" filepath="$PROJECT_DIR$/.idea/Tp1_IGL_VectorHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tp IGL.iml" filepath="$PROJECT_DIR$/Tp IGL.iml" />
     </modules>
   </component>
 </project>
