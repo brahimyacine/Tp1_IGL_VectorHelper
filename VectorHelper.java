@@ -6,6 +6,15 @@ import java.util.Scanner;
 public class VectorHelper {
     private List <Float> vector = new ArrayList<>();
 
+    public VectorHelper(List<Float> vector) {
+        for(int i=0;i<vector.size();i++)
+
+            this.vector.add(vector.get(i));
+
+    }
+    public VectorHelper() {
+
+    }
     public List<Float> getVector() {
         return vector;
     }
@@ -109,36 +118,30 @@ public class VectorHelper {
             }
         }
     }
-    
-    public void fillVector()
+
+    public void fillVector(List<Float> vector)
     {
-        Scanner sc=new Scanner(System.in);
-        vector.clear();
-        int taille=0;
+        this.vector.clear();
+        for(int i=0;i<vector.size();i++)
 
-        System.out.print("Taille ?: ");
-        taille=sc.nextInt();
-
-        for (int i=0  ; i<taille;i++)
-        {
-            System.out.print("Vector["+i+"]:");
-
-            vector.add(new Float(sc.next()));
-            System.out.println();
-        }
+            this.vector.add(vector.get(i));
 
 
     }
-
-
+    public int add(int a,int b)
+    {
+        return a+b;
     }
+
+
+
     public void printVector()
     {
         System.out.println(vector.toString());
     }
 
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
+        /*Scanner sc=new Scanner(System.in);
         VectorHelper Vcc1 = new VectorHelper();
         VectorHelper Vcc2 = new VectorHelper();
         System.out.println("Lecture Vector 1");
@@ -163,7 +166,7 @@ public class VectorHelper {
         Vcc2.printVector();
         System.out.println("Vector2 Inverted");
         Vcc2.Invert();
-        Vcc2.printVector();
+        Vcc2.printVector();*/
     }
 
 
