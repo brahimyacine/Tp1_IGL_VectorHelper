@@ -188,6 +188,10 @@ public class VectorHelper {
         }
     }
 
+    /**
+     * this methode print the menu
+     * @param numMenu if == 1 it print the inisialitation fase if 2 it print the menu of manupulating the victor
+     */
     private static void printMenu(int numMenu)
     {
         switch (numMenu)
@@ -214,6 +218,11 @@ public class VectorHelper {
         }
     }
 
+    /**
+     * this is the methode that call the functions 'methodes ' of the class victorHelper
+     * @param choice an integer wich correcspondto a chosen methode in the menu
+     * @param vectorHelper the vector that the user use
+     */
     private static void callVectorHelperMethods(int choice, VectorHelper vectorHelper)
     {
         switch (choice)
