@@ -177,8 +177,8 @@ public class VectorHelper {
      * @param text
      */
     public void parseText (String text)
-    {
-        String [] tab = text.split (" ");
+    {   vector.clear();
+        String [] tab = text.split ("!");
         for (int i=0;i<tab.length;i++)
 
         {
@@ -188,32 +188,50 @@ public class VectorHelper {
         }
     }
 
-    /**
-     * fill the atribute victor with the elements inside the parameter vector
-     * @param vector given by the user
-     */
-    public void fillVector(List<Float> vector)
+    private static void printMenu(int numMenu)
     {
-        this.vector.clear();
-        for(int i=0;i<vector.size();i++)
-
-            this.vector.add(vector.get(i));
-
-
+        switch (numMenu)
+        {
+            case 1:
+                System.out.println("1.Initialisez un tableau");
+                System.out.println("2.Exit");
+                break;
+            case 2:
+                System.out.println("1.Afficher le Tableau");
+                System.out.println("2.Trier le Tableau");
+                System.out.println("3.GetMin");
+                System.out.println("4.GetMax");
+                System.out.println("5.Invert");
+                System.out.println("6.Multiplication");
+                System.out.println("7.AddVector");
+                System.out.println("8.Réinitialiser le tableau");
+                System.out.println("9.Retour");
+                break;
+            case 3:
+                System.out.println("1.Afficher le Tableau Résultant");
+                System.out.println("2.Retour");
+                break;
+        }
     }
 
-    /**
-     *
-     * @param a first integer to add
-     * @param b second integer to add
-     * @return the addition of parametere 1 and 2
-     */
-    public int add(int a,int b)
+    private static void callVectorHelperMethods(int choice, VectorHelper vectorHelper)
     {
-        return a+b;
+        switch (choice)
+        {
+            case 1:
+                System.out.println("Affichage du tableau ");
+                vectorHelper.printVector();break;
+            case 2:
+                vectorHelper.sortVerctor();break;
+            case 3:
+                System.out.println("La plus petite valeur est : "+ vectorHelper.getMin());break;
+            case 4:
+                System.out.println("La plus grande valeur est : "+ vectorHelper.getMax());break;
+            case 5:
+                vectorHelper.Invert();break;
+            default:break;
+        }
     }
-
-
     /**
      * this methode is used to print a vector which containes Floats Elements
      * into the consol log by transforming the victor to a string
@@ -227,32 +245,78 @@ public class VectorHelper {
      * this is the main methode which is used to run the prgrm who use the class and it'smethode below
      */
     public static void main(String[] args) {
-        /*Scanner sc=new Scanner(System.in);
-        VectorHelper Vcc1 = new VectorHelper();
-        VectorHelper Vcc2 = new VectorHelper();
-        System.out.println("Lecture Vector 1");
-        Vcc1.fillVector();
-        Vcc1.printVector();
-        System.out.println("Max : "+Vcc1.getMax());
-        System.out.println("Min : "+Vcc1.getMin());
-        System.out.println("Vector1 sorted");
-        Vcc1.sortVerctor();
-        Vcc1.printVector();
-        System.out.println("Vector1 Inverted");
-        Vcc1.Invert();
-        Vcc1.printVector();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome To VectorHelper Class !");
+        int choice1 , choice2 , choice3 ;
+        VectorHelper vectorHelper1=new VectorHelper();
+        VectorHelper vectorHelper2=new VectorHelper();
+        List<Float> resultAddVector=new ArrayList<>();
+        String tableauPrincipal,tableau2;
 
-        System.out.println("Lecture Vector 2");
-        Vcc2.fillVector();
-        Vcc2.printVector();
-        System.out.println("Max : "+Vcc2.getMax());
-        System.out.println("Min : "+Vcc2.getMin());
-        System.out.println("Vector2 sorted");
-        Vcc2.sortVerctor();
-        Vcc2.printVector();
-        System.out.println("Vector2 Inverted");
-        Vcc2.Invert();
-        Vcc2.printVector();*/
+
+        while(true)//Main Menu
+        {
+            printMenu(1);
+            choice1 = sc.nextInt();
+            if (choice1 == 2) break;
+
+            System.out.println("Entrez les données de votre tableau:");
+
+            tableauPrincipal =sc.next() ;
+
+            vectorHelper1.parseText(tableauPrincipal);
+            while (true) {
+                printMenu(2);
+                choice2 = sc.nextInt();
+                if (choice2 == 9) break;
+                if (choice2 == 7) //AddVectors
+                {
+                    System.out.println("Entrer le deuxieme tableau (sa taille doit etre égale à " + vectorHelper1.getVector().size());
+
+                    tableau2 = sc.next();
+
+                    vectorHelper2.parseText(tableau2);
+                    try {
+                        resultAddVector = vectorHelper1.addVectors(vectorHelper2.getVector());
+
+
+                    } catch (SizeException e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        while (true) {
+                            printMenu(3);
+                            choice3 = sc.nextInt();
+                            if (choice3 != 1) break;
+                            System.out.println(resultAddVector.toString());
+
+                        }
+                    }
+
+                } else {
+                    if (choice2 == 6)//Multiplication
+                    {
+                        System.out.print("Entrer un entier: ");
+                        vectorHelper1.Multiplication(sc.nextInt());
+                        System.out.println();
+                    } else {
+                        if (choice2 == 8)//réinitialiser le tableau
+                        {
+                            System.out.println("Entrez les données de votre tableau:");
+
+                            tableauPrincipal = sc.next();
+
+                            vectorHelper1.parseText(tableauPrincipal);
+                        } else {
+                            callVectorHelperMethods(choice2, vectorHelper1);
+                        }
+                    }
+                }
+
+            }
+
+
+        }
     }
 
 
