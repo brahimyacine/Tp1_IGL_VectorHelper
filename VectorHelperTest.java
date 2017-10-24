@@ -74,17 +74,10 @@ public class VectorHelperTest extends TestCase {
     @Test
     public void testparseText()  {
         VectorHelper vParse=new VectorHelper();
-        vParse.parseText("1.0 2.3 3.5 5.3 0 -9 -8 -5");
+        vParse.parseText("1.0!2.3!3.5!5.3!0!-9!-8!-5");
         List<Float> vectorExpected=Arrays.asList(1.0f,2.3f,3.5f,5.3f,0f,-9f,-8f,-5f);
         assertEquals(vectorExpected,vParse.getVector());
     }
 
-    @Test
-    public void testfillVector(){
-        VectorHelper vFill=new VectorHelper();
-        List<Float> vectorExpected=Arrays.asList(0f,+5.1f,+5.1f,+5.2f,0f,+10.6f,-13f,-18f);
-        vFill.fillVector(vectorExpected);
-        assertEquals(vectorExpected,vFill.getVector());
-    }
 
 }
